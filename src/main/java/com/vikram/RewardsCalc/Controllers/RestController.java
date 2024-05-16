@@ -20,16 +20,24 @@ public class RestController {
 
     @PostMapping
     String insertData(@RequestBody Customer customer) {
+        if (customer == null)
+            return "Data not inserted successfully";
+
+        customerService.insertData(customer);
+        return "Data inserted successfully";
+    }
+
+    @PutMapping
+    String updateData(@RequestBody Customer customer) {
         if (customer == null) {
             return "Data not inserted successfully";
         }
         //  collageService.insertData(collage);
-        if (repo.findById(customer.getId()).isPresent()) {
+        if (customer.getId() != null && repo.findById(customer.getId()).isPresent()) {
             customerService.insertData(customer);
             return "Data Updated successfully";
         } else {
-            customerService.insertData(customer);
-            return "Data inserted successfully";
+            return "Data not inserted successfully, Create before updating";
         }
     }
 
