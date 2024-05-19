@@ -1,6 +1,8 @@
 # RewardsCalc
 
+Running spring boot as a deamon (in linux server)
 
+     nohup java -jar RewardsCalc-0.0.1-SNAPSHOT.jar 
 
 Implemented SSL: https://www.baeldung.com/spring-boot-https-self-signed-certificate
 
