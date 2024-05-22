@@ -8,12 +8,11 @@ import lombok.Data;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer id;
     @Column(name = "f_name")
     String f_name;
     @Column(name = "l_name")
     String l_name;
-
-//    Address address;
+    String country;
 }
