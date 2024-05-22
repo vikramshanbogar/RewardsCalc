@@ -1,5 +1,3 @@
-INSERT INTO `customer`(f_name,l_name) VALUES
-                                          ('Vikram','Shanbogar'),
-                                          ('Pooja','Raj'),
-                                          ('Swati','Kota'),
-                                          ('Varun','Tej');
+
+INSERT INTO rewards (transaction_entity_name,transaction_amount,reward_points) VALUES
+    ('Zara',120.0,85);

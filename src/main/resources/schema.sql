@@ -1,9 +1,13 @@
-drop table if exists customer;
+drop table if exists rewards;
 
-CREATE TABLE `customer` (
-                            `id` int NOT NULL AUTO_INCREMENT,
-                            `f_name` varchar(255) DEFAULT NULL,
-                            `l_name` varchar(255) DEFAULT NULL,
-                            PRIMARY KEY (`id`));
+
+create table rewards
+(
+    id                      int NOT NULL AUTO_INCREMENT,
+    reward_points           integer,
+    transaction_amount      float(53),
+    transaction_entity_name varchar(255),
+    primary key (id)
+)
 
 
