@@ -3,10 +3,14 @@ package com.vikram.RewardsCalc.Controllers;
 import com.vikram.RewardsCalc.Models.Customer;
 import com.vikram.RewardsCalc.Repos.CustomerRepo;
 import com.vikram.RewardsCalc.Services.CustomerService;
+import com.vikram.RewardsCalc.Utils.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/customers")
@@ -17,6 +21,8 @@ public class RestController {
 
     @Autowired
     CustomerRepo repo;
+    @Autowired
+    private CustomerRepo customerRepo;
 
     @PostMapping
     String insertData(@RequestBody Customer customer) {
@@ -41,15 +47,45 @@ public class RestController {
         }
     }
 
+    @PatchMapping
+    String updateDataPatch(@RequestBody Customer customer) {
+        Optional<Customer> customerOptional = customerRepo.findById(customer.getId());
+
+        if (!customerOptional.isPresent()) {
+            return "Record not found";
+        }
+        try {
+            Utility.CustomerPatcher(customerOptional.get(), customer);
+            customerService.insertData(customerOptional.get());
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        return "Data patched successfully";
+    }
+
     @GetMapping
     List<Customer> getCustomers() {
         return repo.findAll();
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.HEAD)
+    String getRequest() {
+        return "Success";
     }
 
     @GetMapping("/{id}")
     Customer getCustomerById(@PathVariable int id) {
         return repo.findById(id).get();
     }
+
+    @RequestMapping(value = "/", method = RequestMethod.OPTIONS)
+    ResponseEntity<?> getOptions() {
+        return ResponseEntity
+                .ok()
+                .allow(HttpMethod.GET, HttpMethod.DELETE,HttpMethod.PUT,HttpMethod.POST, HttpMethod.PATCH, HttpMethod.OPTIONS, HttpMethod.HEAD)
+                .build();
+    }
+
 
     @DeleteMapping("/{id}")
     String deleteCustomerById(@PathVariable int id) {
