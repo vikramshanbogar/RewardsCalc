@@ -7,6 +7,7 @@ create table rewards
     reward_points           integer,
     transaction_amount      float(53),
     transaction_entity_name varchar(255),
+    `customer_id` int NOT NULL,
     primary key (id)
 )
 

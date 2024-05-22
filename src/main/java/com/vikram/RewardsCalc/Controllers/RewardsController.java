@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -76,9 +75,9 @@ public class RewardsController {
         return "Success";
     }
 
-    @GetMapping("/{id}")
-    Rewards getRewardsById(@PathVariable int id) {
-        return rewardsRepo.findById(id).get();
+    @GetMapping("/{customerId}")
+    List<Rewards> getRewardsByCustomerId(@PathVariable int customerId) {
+        return rewardsRepo.getRewardsByCustomerId(customerId);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.OPTIONS)

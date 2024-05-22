@@ -15,4 +15,5 @@ public class Rewards {
     String transactionEntityName;
     Double transactionAmount;
     Integer rewardPoints;
+    Integer customerId;
 }
