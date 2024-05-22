@@ -15,5 +15,4 @@ public class Customer {
     @Column(name = "l_name")
     String l_name;
 
-//    Address address;
 }
