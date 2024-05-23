@@ -1,7 +1,7 @@
 package com.javatechie.service;
 
 import com.javatechie.dto.Product;
-import com.javatechie.entity.UserInfo;
+import com.javatechie.entity.userinfo;
 import com.javatechie.repository.UserInfoRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class ProductService {
     }
 
 
-    public String addUser(UserInfo userInfo) {
+    public String addUser(userinfo userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
         repository.save(userInfo);
         return "user added to system ";

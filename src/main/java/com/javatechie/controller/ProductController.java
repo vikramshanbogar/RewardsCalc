@@ -2,8 +2,8 @@ package com.javatechie.controller;
 
 import com.javatechie.dto.AuthRequest;
 import com.javatechie.dto.Product;
-import com.javatechie.entity.UserInfo;
-import com.javatechie.service.JwtService;
+import com.javatechie.entity.userinfo;
+import com.javatechie.config.JwtService;
 import com.javatechie.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,7 +33,7 @@ public class ProductController {
     }
 
     @PostMapping("/new")
-    public String addNewUser(@RequestBody UserInfo userInfo) {
+    public String addNewUser(@RequestBody userinfo userInfo) {
         return service.addUser(userInfo);
     }
 
