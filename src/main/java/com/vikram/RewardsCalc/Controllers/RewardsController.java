@@ -17,9 +17,6 @@ import java.util.Optional;
 @RequestMapping("/rewards")
 public class RewardsController {
 
-    @Value("${address.service.url}")
-    String addressServiceUrl;
-
     @Autowired
     RewardsService rewardsService;
 
